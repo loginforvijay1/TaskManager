@@ -36,13 +36,13 @@ extension Date {
         
         var week: [WeekDay] = []
         let weekdate = calender.dateInterval(of: .weekOfMonth, for: startDate)
-        guard (weekdate?.start) != nil else {
+        guard let startOfWeek = weekdate?.start else {
             return []
         }
         
         // Iterating to get the Full week
         (0...6).forEach { index in
-            if let weekDay = calender.date(byAdding: .day, value: index, to: startDate) {
+            if let weekDay = calender.date(byAdding: .day, value: index, to: startOfWeek) {
                 week.append(.init(date: weekDay))
             }
         }
